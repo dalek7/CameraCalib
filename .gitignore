@@ -1,6 +1,18 @@
 # Prerequisites
 *.d
 
+# VS
+*.pdb
+*.VC.db
+.vs/
+x64/
+*.opendb
+
+
+# seung
+images/
+out/
+
 # Compiled Object files
 *.slo
 *.lo
