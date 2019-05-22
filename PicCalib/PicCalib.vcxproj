@@ -134,9 +134,7 @@
     <ClInclude Include="Thirdparty\mytime.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\images\default.xml">
-      <SubType>Designer</SubType>
-    </Xml>
+    <Xml Include="default.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -40,7 +40,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\images\default.xml">
+    <Xml Include="default.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>
