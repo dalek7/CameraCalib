@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PicCalib", "PicCalib\PicCalib.vcxproj", "{3956C7F6-2C82-4105-A9D2-0CDF0C9D6DD6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Undistort", "Undistort\Undistort.vcxproj", "{85C4B11A-B221-4F00-A488-C5E8C2F7B131}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{3956C7F6-2C82-4105-A9D2-0CDF0C9D6DD6}.Release|x64.Build.0 = Release|x64
 		{3956C7F6-2C82-4105-A9D2-0CDF0C9D6DD6}.Release|x86.ActiveCfg = Release|Win32
 		{3956C7F6-2C82-4105-A9D2-0CDF0C9D6DD6}.Release|x86.Build.0 = Release|Win32
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Debug|x64.ActiveCfg = Debug|x64
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Debug|x64.Build.0 = Debug|x64
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Debug|x86.ActiveCfg = Debug|Win32
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Debug|x86.Build.0 = Debug|Win32
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Release|x64.ActiveCfg = Release|x64
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Release|x64.Build.0 = Release|x64
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Release|x86.ActiveCfg = Release|Win32
+		{85C4B11A-B221-4F00-A488-C5E8C2F7B131}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

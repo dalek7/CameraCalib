@@ -13,41 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="lib">
-      <UniqueIdentifier>{e0da26c7-07e3-4813-9896-51e7cc08270d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Thirdparty\mytime.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="test1.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Thirdparty\bbutil.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Thirdparty\bbutilfile.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Thirdparty\bbutilstring.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="default.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
-    <Xml Include="out_camera_data.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
   </ItemGroup>
 </Project>
