@@ -9,7 +9,6 @@ x64/
 *.opendb
 Debug/
 Release/
-*.vcxproj.filters
 *.vcxproj.user
 *.bak
 
