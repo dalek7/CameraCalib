@@ -35,3 +35,103 @@ static void test1()
 	char key1 = (char)waitKey(-1);
 
 }
+
+static
+bool readStringList2(const string& filename, vector<string>& l)
+{
+	l.clear();
+	FileStorage fs(filename, FileStorage::READ);
+	if (!fs.isOpened())
+		return false;
+	FileNode n = fs.getFirstTopLevelNode();
+	if (n.type() != FileNode::SEQ)
+		return false;
+	FileNodeIterator it = n.begin(), it_end = n.end();
+	for (; it != it_end; ++it)
+		l.push_back((string)*it);
+	return true;
+}
+
+static
+void testx()
+{
+	//test
+	vector<string> l1;
+	const string fn1 = "../images/VID5.xml";
+	readStringList2(fn1, l1);
+	cout << l1.size() << endl;
+}
+
+
+int mainOri(int argc, char** argv) {
+
+	std::string outdir = "../out";
+	MakeSurePathExists(outdir);
+	cout << "video" << endl;
+
+	std::cout << "hello" << std::endl;
+
+#ifdef WINDOWS
+	std::string location;
+	location = "../images/20190429_Note9_calib_640";
+#else
+	location = "/home/seung/work/dataset/TUM-rgbd/rgbd_dataset_freiburg1_xyz/rgb";
+#endif
+
+	std::vector<std::string> vfn1;
+	string fn_video;
+	int nimg = GetFilesofExtInDirectory(vfn1, location, "jpg");
+
+	if (nimg>0)
+	{
+		fn_video = vfn1[0];
+		cout << "found " << nimg << " pic file(s)" << endl;
+		cout << fn_video << endl;
+	}
+	else
+	{
+		cout << "no video found" << endl;
+	}
+
+
+	//! [file_read]
+	Settings s;
+	const string inputSettingsFile = "../images/default.xml";
+	FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
+	if (!fs.isOpened())
+	{
+		cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
+		return -1;
+	}
+	else
+	{
+		cout << "Loaded configuration file: \"" << inputSettingsFile << "\"" << endl;
+	}
+
+	fs["Settings"] >> s;
+	fs.release();                                         // close Settings file
+
+														  //! [file_read]
+	if (!s.goodInput)
+	{
+		cout << "Invalid input detected. Application stopping. " << endl;
+
+		getchar();
+
+		return -1;
+	}
+
+	vector<vector<Point2f> > imagePoints;
+	Mat cameraMatrix, distCoeffs;
+	Size imageSize;
+	int mode = s.inputType == Settings::IMAGE_LIST ? CAPTURING : DETECTION;
+	clock_t prevTimestamp = 0;
+	const Scalar RED(0, 0, 255), GREEN(0, 255, 0);
+	const char ESC_KEY = 27;
+
+
+	printf("== Main End! ==");
+	getchar();
+
+	return 0;
+}

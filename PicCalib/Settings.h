@@ -324,20 +324,6 @@ private:
 
 };
 
-static bool readStringList2(const string& filename, vector<string>& l)
-{
-	l.clear();
-	FileStorage fs(filename, FileStorage::READ);
-	if (!fs.isOpened())
-		return false;
-	FileNode n = fs.getFirstTopLevelNode();
-	if (n.type() != FileNode::SEQ)
-		return false;
-	FileNodeIterator it = n.begin(), it_end = n.end();
-	for (; it != it_end; ++it)
-		l.push_back((string)*it);
-	return true;
-}
 static inline void read(const FileNode& node, Settings& x, const Settings& default_value = Settings())
 {
 	if (node.empty())

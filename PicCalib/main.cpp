@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 
 	std::string outdir = "../out";
 	MakeSurePathExists(outdir);
-	//! [file_read]
+
 	Settings s;
 	const string inputSettingsFile = "./default.xml";
 	FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
@@ -67,10 +67,6 @@ int main(int argc, char** argv) {
 		cout <<i <<  "\t" << view.size().width << " x " << view.size().height << " x " << view.channels() ;
 		//Mat viewGray, view2;
 		Mat view2;
-		//cvtColor(view, viewGray, COLOR_BGR2GRAY);
-		
-
-		//imshow("Image View", viewGray);
 		char key1 = (char)waitKey(1); //s.delay
 
 		if (key1 == ESC_KEY)
@@ -254,88 +250,6 @@ int main(int argc, char** argv) {
 }
 
 
-int mainOri(int argc, char** argv) {
-	
-	std::string outdir = "../out";
-	MakeSurePathExists(outdir);
-	cout << "video" << endl;
-
-	std::cout << "hello" << std::endl;
-
-#ifdef WINDOWS
-	std::string location;
-	location = "../images/20190429_Note9_calib_640";
-#else
-	location = "/home/seung/work/dataset/TUM-rgbd/rgbd_dataset_freiburg1_xyz/rgb";
-#endif
-
-	std::vector<std::string> vfn1;
-	string fn_video;
-	int nimg = GetFilesofExtInDirectory(vfn1, location, "jpg");
-
-	if(nimg>0)
-	{
-		fn_video = vfn1[0];
-		cout << "found " << nimg << " pic file(s)" << endl;
-		cout << fn_video << endl;
-	}
-	else
- 	{
-		cout << "no video found" << endl;
-	}
-
-
-	//! [file_read]
-	Settings s;
-	const string inputSettingsFile =  "../images/default.xml";
-	FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
-	if (!fs.isOpened())
-	{
-		cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
-		return -1;
-	}
-	else
-	{
-		cout << "Loaded configuration file: \"" << inputSettingsFile << "\"" << endl;
-	}
-
-	fs["Settings"] >> s;
-	fs.release();                                         // close Settings file
-	
-														  //! [file_read]
-	if (!s.goodInput)
-	{
-		cout << "Invalid input detected. Application stopping. " << endl;
-
-		getchar();
-
-		return -1;
-	}
-
-	vector<vector<Point2f> > imagePoints;
-	Mat cameraMatrix, distCoeffs;
-	Size imageSize;
-	int mode = s.inputType == Settings::IMAGE_LIST ? CAPTURING : DETECTION;
-	clock_t prevTimestamp = 0;
-	const Scalar RED(0, 0, 255), GREEN(0, 255, 0);
-	const char ESC_KEY = 27;
-
-
-	printf("== Main End! ==");
-	getchar();
-
-	return 0;
-}
-
-
-void testx()
-{
-	//test
-	vector<string> l1;
-	const string fn1 = "../images/VID5.xml";
-	readStringList2(fn1, l1);
-	cout << l1.size() << endl;
-}
 
 //! [compute_errors]
 static double computeReprojectionErrors(const vector<vector<Point3f> >& objectPoints,
@@ -454,7 +368,7 @@ static void saveCameraParams(Settings& s, Size& imageSize, Mat& cameraMatrix, Ma
 	double totalAvgErr)
 {
 	string fnout;
-	if(s.inputType == Settings::IMAGE_LIST)
+	if (s.inputType == Settings::IMAGE_LIST)
 		fnout = s.input + "/" + s.outputFileName;
 	else
 		fnout = s.outputFileName;
@@ -566,7 +480,6 @@ static void saveCameraParams(Settings& s, Size& imageSize, Mat& cameraMatrix, Ma
 	}
 }
 
-//! [run_and_save]
 bool runCalibrationAndSave(Settings& s, Size imageSize, Mat& cameraMatrix, Mat& distCoeffs,
 	vector<vector<Point2f> > imagePoints)
 {
@@ -584,5 +497,3 @@ bool runCalibrationAndSave(Settings& s, Size imageSize, Mat& cameraMatrix, Mat& 
 			totalAvgErr);
 	return ok;
 }
-//! [run_and_save]
-
