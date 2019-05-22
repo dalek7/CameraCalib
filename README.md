@@ -1,5 +1,7 @@
 # CameraCalib
-OpenCV3
+Tested under
+* OpenCV 3.2 (should work with 3.x)
+* Visual Studio 2015
 
 ## Examples
 * In progress
