@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="test1.h" />
     <ClInclude Include="Thirdparty\bbutil.h" />
     <ClInclude Include="Thirdparty\bbutilfile.h" />
     <ClInclude Include="Thirdparty\bbutilstring.h" />

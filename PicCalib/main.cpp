@@ -11,32 +11,6 @@
 using namespace cv;
 
 #include "Settings.h"
-static bool readStringList2(const string& filename, vector<string>& l)
-{
-	l.clear();
-	FileStorage fs(filename, FileStorage::READ);
-	if (!fs.isOpened())
-		return false;
-	FileNode n = fs.getFirstTopLevelNode();
-	if (n.type() != FileNode::SEQ)
-		return false;
-	FileNodeIterator it = n.begin(), it_end = n.end();
-	for (; it != it_end; ++it)
-		l.push_back((string)*it);
-	return true;
-}
-static inline void read(const FileNode& node, Settings& x, const Settings& default_value = Settings())
-{
-	if (node.empty())
-		x = default_value;
-	else
-		x.read(node);
-}
-
-static inline void write(FileStorage& fs, const String&, const Settings& s)
-{
-	s.write(fs);
-}
 
 enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };
 
@@ -49,7 +23,7 @@ int main(int argc, char** argv) {
 	MakeSurePathExists(outdir);
 	//! [file_read]
 	Settings s;
-	const string inputSettingsFile = "../images/default.xml";
+	const string inputSettingsFile = "./default.xml";
 	FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
 	if (!fs.isOpened())
 	{
@@ -260,6 +234,10 @@ int main(int argc, char** argv) {
 			cout << fnout << endl;
 			imwrite(fnout, rview);
 
+			fnout = outdir + format("/%d.jpg", i);
+			cout << fnout << endl;
+			imwrite(fnout, view);
+
 			imshow("Image View", rview);
 			char c = (char)waitKey();
 			if (c == ESC_KEY || c == 'q' || c == 'Q')
@@ -285,8 +263,6 @@ int mainOri(int argc, char** argv) {
 	std::cout << "hello" << std::endl;
 
 #ifdef WINDOWS
-	//location = "E:/work/dataset/TUM_rgbd/rgbd_dataset_freiburg1_xyz/rgb";
-	//location = "c:/Users/seung/work/dataset/TUM-rgbd/rgbd_dataset_freiburg1_xyz/rgb";
 	std::string location;
 	location = "../images/20190429_Note9_calib_640";
 #else
@@ -610,29 +586,3 @@ bool runCalibrationAndSave(Settings& s, Size imageSize, Mat& cameraMatrix, Mat& 
 }
 //! [run_and_save]
 
-
-// tested okay
-void test1()
-{
-	Size patternsize(9, 6); //interior number of corners
-	Mat rgb = imread("C:\\Users\\seung\\work\\repos\\PicCalib\\PicCalib\\20190429_125729.jpg", IMREAD_COLOR);
-	Mat gray;
-	cvtColor(rgb, gray, COLOR_BGR2GRAY);
-	vector<Point2f> corners; //this will be filled by the detected corners
-
-							 //CALIB_CB_FAST_CHECK saves a lot of time on images
-							 //that do not contain any chessboard corners
-	bool patternfound = findChessboardCorners(gray, patternsize, corners,
-		CALIB_CB_ADAPTIVE_THRESH + CALIB_CB_NORMALIZE_IMAGE
-	);//+ CALIB_CB_FAST_CHECK
-
-	if (patternfound)
-		cornerSubPix(gray, corners, Size(11, 11), Size(-1, -1),
-			TermCriteria(CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 30, 0.1));
-
-	drawChessboardCorners(rgb, patternsize, Mat(corners), patternfound);
-
-	imshow("Image View", rgb);
-	char key1 = (char)waitKey(-1);
-
-}
