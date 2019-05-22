@@ -11,7 +11,7 @@ Debug/
 Release/
 *.vcxproj.filters
 *.vcxproj.user
-
+*.bak
 
 # seung
 images/
