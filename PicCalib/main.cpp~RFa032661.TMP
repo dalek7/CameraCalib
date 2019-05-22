@@ -45,11 +45,13 @@ bool runCalibrationAndSave(Settings& s, Size imageSize, Mat&  cameraMatrix, Mat&
 
 int main(int argc, char** argv) {
 
+
+
 	std::string outdir = "../out";
 	MakeSurePathExists(outdir);
 	//! [file_read]
 	Settings s;
-	const string inputSettingsFile = "../images/default.xml";
+	const string inputSettingsFile = "C:/Users/seung/work/repos/PicCalib/images/default.xml";
 	FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
 	if (!fs.isOpened())
 	{
