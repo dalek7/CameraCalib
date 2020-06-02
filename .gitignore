@@ -15,6 +15,7 @@ Release/
 # seung
 images/
 out/
+out*/
 
 # Compiled Object files
 *.slo
