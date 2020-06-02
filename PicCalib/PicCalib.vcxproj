@@ -135,7 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="default.xml" />
-    <Xml Include="out_camera_data.xml" />
+    <Xml Include="out_camera_data.xml">
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

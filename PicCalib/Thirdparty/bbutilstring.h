@@ -5,29 +5,32 @@
 #include <vector>
 #include "mytime.h"
 using namespace std;
-
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <time.h>
 
 inline static
-std::string StringFormat(const std::string fmt_str, ...)
+std::string StringFormat2(const std::string fmt, ...)
 {
-	int final_n, n = ((int)fmt_str.size()) * 2; /* Reserve two times as much as the length of the fmt_str */
-	std::string str;
-	std::unique_ptr<char[]> formatted;
+	int size = ((int)fmt.size()) * 2; /* Reserve two times as much as the length of the fmt_str */
+	std::string buffer;
 	va_list ap;
-	while (1)
-	{
-		formatted.reset(new char[n]); /* Wrap the plain char array into the unique_ptr */
-		//strcpy(&formatted[0], fmt_str.c_str());
-		strcpy_s(&formatted[0], (int)fmt_str.size(), fmt_str.c_str());
-		va_start(ap, fmt_str);
-		final_n = vsnprintf(&formatted[0], n, fmt_str.c_str(), ap);
+	while (1) {
+		buffer.resize(size);
+		va_start(ap, fmt);
+		int n = vsnprintf((char*)buffer.data(), size, fmt.c_str(), ap);
 		va_end(ap);
-		if (final_n < 0 || final_n >= n)
-			n += abs(final_n - n + 1);
+		if (n > -1 && n < size) {
+			buffer.resize(n);
+			return buffer;
+		}
+		if (n > -1)
+			size = n + 1;
 		else
-			break;
+			size *= 2;
 	}
-	return std::string(formatted.get());
+	return buffer;
 }
 
 #ifdef __linux__
@@ -54,7 +57,7 @@ inline std::string GetTimeString()
 	gettimeofday(&ts, 0);
 	double tu = ts.tv_usec;
 
-	std::string ret = StringFormat("%d%02d%02d_%02d%02d%02d_%.f", now.tm_year + 1900,
+	std::string ret = StringFormat2("%d%02d%02d_%02d%02d%02d_%.f", now.tm_year + 1900,
 		now.tm_mon + 1,
 		now.tm_mday,
 		now.tm_hour,
@@ -62,6 +65,31 @@ inline std::string GetTimeString()
 		now.tm_sec,
 		tu);
 	return ret;
+}
+
+
+// 현재시간을 string type으로 return하는 함수
+inline static
+const std::string currentDateTime() {
+	time_t     now = time(0); //현재 시간을 time_t 타입으로 저장
+	struct tm  tstruct;
+	char       buf[80];
+	tstruct = *localtime(&now);
+	/*
+	char bufch[255] = { 0, };
+	memset(bufch, 0, 255);
+	
+	sprintf(bufch, "%d%02d%02d_%02d%02d%02d", tstruct.tm_year + 1900,
+		tstruct.tm_mon + 1,
+		tstruct.tm_mday,
+		tstruct.tm_hour,
+		tstruct.tm_min,
+		tstruct.tm_sec);
+
+	*/
+	strftime(buf, sizeof(buf), "%Y%m%d.%X", &tstruct); // YYYY-MM-DD.HH:mm:ss 형태의 스트링
+
+	return std::string(buf);
 }
 
 inline static

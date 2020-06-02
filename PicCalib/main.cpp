@@ -19,7 +19,10 @@ bool runCalibrationAndSave(Settings& s, Size imageSize, Mat&  cameraMatrix, Mat&
 
 int main(int argc, char** argv) {
 
-	std::string outdir = "../out";
+	std::string str1 = StringFormat2("%d", 3);
+	std::string fnbasis = GetTimeString();
+	//std::string fnbasis = currentDateTime();// GetTimeString();
+	std::string outdir = "../out_"+fnbasis;
 	MakeSurePathExists(outdir);
 
 	Settings s;

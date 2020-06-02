@@ -19,7 +19,8 @@
 		Changed by sc @20190520 -> put directory name
 		-->
   <!--<Input>"0"</Input>-->
-  <Input>"../images/20190429_Note9_calib_640"</Input>
+  <!--<Input>"../images/20190429_Note9_calib_640"</Input>-->
+  <Input>"../images/20200602_logitech"</Input>
   <!--  If true (non-zero) we flip the input images around the horizontal axis.-->
   <Input_FlipAroundHorizontalAxis>0</Input_FlipAroundHorizontalAxis>
   
