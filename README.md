@@ -21,7 +21,7 @@ Visual Studio 2015
 <img src='screenshots/image01.png' />
 
 * Comparison
-<img src='examples/anigif_0.gif' width=500px />
+<img src='examples/results/anigif_0.gif' width=500px />
 
 * Run example
 ```
