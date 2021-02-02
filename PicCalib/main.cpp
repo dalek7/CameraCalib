@@ -26,11 +26,12 @@ int main(int argc, char** argv) {
 	MakeSurePathExists(outdir);
 
 	Settings s;
-	const string inputSettingsFile = "./default.xml";
+	const string inputSettingsFile = "default.xml";
 	FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
 	if (!fs.isOpened())
 	{
 		cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
+		getchar();
 		return -1;
 	}
 	else
@@ -47,7 +48,8 @@ int main(int argc, char** argv) {
 
 	if (!s.goodInput)
 	{
-		cout << "Invalid input detected. Application stopping. " << endl;
+		cout << "\n\nInvalid input detected. Application stopping. " << endl;
+		getchar();
 		return -1;
 	}
 	vector<vector<Point2f> > imagePoints;
@@ -233,7 +235,7 @@ int main(int argc, char** argv) {
 			cout << fnout << endl;
 			imwrite(fnout, rview);
 
-			fnout = outdir + format("/%d.jpg", i);
+			fnout = outdir + format("/%d_.jpg", i);
 			cout << fnout << endl;
 			imwrite(fnout, view);
 
