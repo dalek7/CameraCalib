@@ -15,7 +15,7 @@ Visual Studio 2015
 
 ## Examples
 * In progress
-<img src='screenshots/10.jpg' width=640px />
+<img src='screenshots/10.jpg' width=800px />
 <br/>
 <img src='screenshots/image02.png' />
 
